@@ -1,0 +1,22 @@
+#                                  
+#     Задан словарь типа { 1: 14, 2: 3, 3:12, 4:4, 5:14, 6:4}
+#     Необходимо преобразовать словарь к виду {3: 2, 14: [1, 5], 12: 3, 4: [4, 6]}
+#     Если в словаре только одно значение (key, value), то вывести его в порядке value, key
+#
+
+# Ntcnjds
+#dict = {1:2, 2:3, 3:1,4:4, 5:3, 6:6}
+#dict = {1:2, 2:3, 3:1, 4:4, 5:3, 6:6, 7:2, 9:3, 10:1}
+
+new_dict = {}
+list_of_index = []
+for i in dict.values():
+    for j in dict.keys():
+        if (dict.get(j) == i):
+            list_of_index.append(j)
+    if len(list_of_index) == 1:
+        new_dict.update({i:list_of_index[0]})
+    else:
+        new_dict.update({i:list_of_index})
+    list_of_index = []    
+new_dict   
