@@ -1,0 +1,45 @@
+#
+#     Задача 3
+#     На вход поступает текст произвольной длины, в которой в любом месте
+#     текста может присутствовать последовательность вида:
+#                   "QWERTY" * "число1" * "число2", где * - любое количество символов.
+#     Если в тексте присутствует "QWERTY", то наличие двух чисел гарантируется.
+#     Между строкой "QWERTY" и числами 1 и 2 иных чисел нет, могут присутствовать 
+#     только буквы и символы.
+#     Сама строка "QWERTY" может быть записана в виде "QWE-RTY", "QWERT-Y", "Q=WERTY"
+#     "Q-W+E-R%T_Y" "qwert)y" и иным образом.
+#     Определить, есть ли строка в тексте, и если есть, то вывести "число 1" и "число 2".  
+#
+
+test1 = "ghjkggjjbfjfrnao BHJG@IYviyb hgiu hd ioeh yu84hf uihrne jheuhoerne eekrjeoienr ee\
+        rjtlejte erwe%qwe wrewfy*egwv qew dqwdw 4w ERTDCCdew qw RWE QWERTY sjjfhjfvcv sa 11\
+        gsdjfhbc fdaji QWQW uhdke 12"
+
+test2 = "ghjkggjjbfjfrnao BHJGIYviyb hgiu hd ioeh yu84hf uihrne jheuhoerne eekrjeoienr ee\
+        rjtlejte erweqwe wrewfyegwv qew dqwdw 4w ERTDCCdew qw RWE QWERTY sjjfhjfvcv sa 21\
+        gsdjfhbc fdaji QWQW uhdke 22"
+
+test3 = "ghjkggjjbfjfqw RWE QW er TY sjjfhjfvcv sa 31rnao BHJGuhdke 32IYviyb hgiu hd ioeh yu84hf uihrne jheuhoerne eekrjeoienr ee\
+        rjtlejte erweqwe wrewfyegwv qew dqwdw 4w ERTDCCdew \
+        gsdjfhbc fdaji QWQW "
+
+test4 = "ghjkggjjbfjfqw RWE Q er TY sjjfhjfvcv sa 31rnao BHJGuhdke 32IYviyb hgiu hd ioeh yu84hf uihrne jheuhoerne eekrjeoienr ee\
+        rjtlejte erweqwe wrewfyegwv qew dqwdw 4w ERTDCCdew \
+        gsdjfhbc fdaji QWQW "
+
+
+
+# Решение:
+import re
+
+list_of_letters = ["Q", "W", "E", "R", "T", "Y"]
+itog = ""
+test = test4.upper().replace(' ', '')
+for i in range(len(test)):
+    if ((test[i] in list_of_letters) or (test[i].isdigit())):
+        itog = itog + test[i]   
+if ("QWERTY" in test):
+    nums = re.findall(r'\d+', itog[itog.find("QWERTY"):])
+    print("true " + str(nums[0]) + " "+ str(nums[1]))
+else:
+    print("false")
